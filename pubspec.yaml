@@ -22,7 +22,7 @@ dependencies:
   # Functional Programming
   dartz: ^0.9.1
   # Remote API
-  connectivity: ^0.4.9+2
+  data_connection_checker: ^0.3.4
   http: ^0.12.2
   # Local cache
   shared_preferences: ^0.5.10
@@ -32,9 +32,5 @@ dev_dependencies:
     sdk: flutter
   mockito: ^4.1.2
 
-#
-
 flutter:
   uses-material-design: true
-
-  #
