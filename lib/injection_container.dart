@@ -13,48 +13,48 @@ import 'package:http/http.dart' as http;
 
 import 'features/number_trivia/domain/usecases/get_random_number_trivia.dart';
 
-final _getIt = GetIt.instance;
+final GetIt getIt = GetIt.instance;
 
 Future<void> init() async {
   //! Features - Number Trivia
   // Bloc
-  _getIt.registerFactory(
+  getIt.registerFactory(
     () => NumberTriviaBloc(
-      concrete: _getIt(),
-      random: _getIt(),
-      inputConverter: _getIt(),
+      concrete: getIt(),
+      random: getIt(),
+      inputConverter: getIt(),
     ),
   );
 
   // Use cases
-  _getIt.registerLazySingleton(() => GetConcreteNumberTrivia(_getIt()));
-  _getIt.registerLazySingleton(() => GetRandomNumberTrivia(_getIt()));
+  getIt.registerLazySingleton(() => GetConcreteNumberTrivia(getIt()));
+  getIt.registerLazySingleton(() => GetRandomNumberTrivia(getIt()));
 
   //Repository
-  _getIt.registerLazySingleton<NumberTriviaRepository>(
+  getIt.registerLazySingleton<NumberTriviaRepository>(
     () => NumberTriviaRepositoryImpl(
-      remoteDataSource: _getIt(),
-      localDataSource: _getIt(),
-      networkInfo: _getIt(),
+      remoteDataSource: getIt(),
+      localDataSource: getIt(),
+      networkInfo: getIt(),
     ),
   );
 
   // Data Sources
-  _getIt.registerLazySingleton<NumberTriviaRemoteDataSource>(
-    () => NumberTriviaRemoteDataSourceImpl(client: _getIt()),
+  getIt.registerLazySingleton<NumberTriviaRemoteDataSource>(
+    () => NumberTriviaRemoteDataSourceImpl(client: getIt()),
   );
 
-  _getIt.registerLazySingleton<NumberTriviaLocalDataSource>(
-    () => NumberTriviaLocalDataSourceImpl(sharedPreferences: _getIt()),
+  getIt.registerLazySingleton<NumberTriviaLocalDataSource>(
+    () => NumberTriviaLocalDataSourceImpl(sharedPreferences: getIt()),
   );
 
   //! Core
-  _getIt.registerLazySingleton(() => InputConverter());
-  _getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(_getIt()));
+  getIt.registerLazySingleton(() => InputConverter());
+  getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(getIt()));
 
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();
-  _getIt.registerLazySingleton(() => sharedPreferences);
-  _getIt.registerLazySingleton(() => http.Client);
-  _getIt.registerLazySingleton(() => DataConnectionChecker());
+  getIt.registerLazySingleton(() => sharedPreferences);
+  getIt.registerLazySingleton(() => http.Client());
+  getIt.registerLazySingleton(() => DataConnectionChecker());
 }

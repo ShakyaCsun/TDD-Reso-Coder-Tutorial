@@ -69,15 +69,15 @@ void main() {
             .thenReturn(Left(InvalidInputFailure()));
         // assert later
         final expected = [
-          NumberTriviaInitial(),
+          // NumberTriviaInitial(),
           NumberTriviaLoadFailure(message: INVALID_INPUT_FAILURE_MESSAGE),
         ];
         expectLater(
-          bloc.state,
+          bloc,
           emitsInOrder(expected),
         );
         // act
-        bloc.add(GetTriviaForConcreteNumber('abc'));
+        bloc.add(GetTriviaForConcreteNumber(tNumberString));
       },
     );
 
@@ -105,11 +105,11 @@ void main() {
             .thenAnswer((_) async => Right(tNumberTrivia));
         // assert later
         final expected = [
-          NumberTriviaInitial(),
+          // NumberTriviaInitial(),
           NumberTriviaLoadInProgress(),
           NumberTriviaLoadSuccess(trivia: tNumberTrivia),
         ];
-        expectLater(bloc.state, emitsInOrder(expected));
+        expectLater(bloc, emitsInOrder(expected));
         // act
         bloc.add(GetTriviaForConcreteNumber(tNumberString));
       },
@@ -124,11 +124,11 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure()));
         // assert later
         final expected = [
-          NumberTriviaInitial(),
+          // NumberTriviaInitial(),
           NumberTriviaLoadInProgress(),
           NumberTriviaLoadFailure(message: SERVER_FAILURE_MESSAGE),
         ];
-        expectLater(bloc.state, emitsInOrder(expected));
+        expectLater(bloc, emitsInOrder(expected));
         // act
         bloc.add(GetTriviaForConcreteNumber(tNumberString));
       },
@@ -143,11 +143,11 @@ void main() {
             .thenAnswer((_) async => Left(CacheFailure()));
         // assert later
         final expected = [
-          NumberTriviaInitial(),
+          // NumberTriviaInitial(),
           NumberTriviaLoadInProgress(),
           NumberTriviaLoadFailure(message: CACHE_FAILURE_MESSAGE),
         ];
-        expectLater(bloc.state, emitsInOrder(expected));
+        expectLater(bloc, emitsInOrder(expected));
         // act
         bloc.add(GetTriviaForConcreteNumber(tNumberString));
       },
@@ -179,11 +179,11 @@ void main() {
             .thenAnswer((_) async => Right(tNumberTrivia));
         // assert later
         final expected = [
-          NumberTriviaInitial(),
+          // NumberTriviaInitial(),
           NumberTriviaLoadInProgress(),
           NumberTriviaLoadSuccess(trivia: tNumberTrivia),
         ];
-        expectLater(bloc.state, emitsInOrder(expected));
+        expectLater(bloc, emitsInOrder(expected));
         // act
         bloc.add(GetTriviaForRandomNumber());
       },
@@ -197,11 +197,11 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure()));
         // assert later
         final expected = [
-          NumberTriviaInitial(),
+          // NumberTriviaInitial(),
           NumberTriviaLoadInProgress(),
           NumberTriviaLoadFailure(message: SERVER_FAILURE_MESSAGE),
         ];
-        expectLater(bloc.state, emitsInOrder(expected));
+        expectLater(bloc, emitsInOrder(expected));
         // act
         bloc.add(GetTriviaForRandomNumber());
       },
@@ -215,11 +215,11 @@ void main() {
             .thenAnswer((_) async => Left(CacheFailure()));
         // assert later
         final expected = [
-          NumberTriviaInitial(),
+          // NumberTriviaInitial(),
           NumberTriviaLoadInProgress(),
           NumberTriviaLoadFailure(message: CACHE_FAILURE_MESSAGE),
         ];
-        expectLater(bloc.state, emitsInOrder(expected));
+        expectLater(bloc, emitsInOrder(expected));
         // act
         bloc.add(GetTriviaForRandomNumber());
       },
