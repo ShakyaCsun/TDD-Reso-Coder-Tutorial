@@ -7,23 +7,23 @@ abstract class NumberTriviaState extends Equatable {
   List<Object> get props => [];
 }
 
-class Empty extends NumberTriviaState {}
+class NumberTriviaInitial extends NumberTriviaState {}
 
-class Loading extends NumberTriviaState {}
+class NumberTriviaLoadInProgress extends NumberTriviaState {}
 
-class Loaded extends NumberTriviaState {
+class NumberTriviaLoadSuccess extends NumberTriviaState {
   final NumberTrivia trivia;
 
-  Loaded({@required this.trivia});
+  NumberTriviaLoadSuccess({@required this.trivia});
 
   @override
   List<Object> get props => super.props..addAll([trivia]);
 }
 
-class Error extends NumberTriviaState {
+class NumberTriviaLoadFailure extends NumberTriviaState {
   final String message;
 
-  Error({@required this.message});
+  NumberTriviaLoadFailure({@required this.message});
 
   @override
   List<Object> get props => super.props..addAll([message]);

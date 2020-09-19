@@ -9,7 +9,8 @@ class InputConverter {
         throw FormatException();
       }
       return Right(integer);
-    } on FormatException {
+    } catch (e) {
+      print('Format Exception Occurred');
       return Left(InvalidInputFailure());
     }
   }
